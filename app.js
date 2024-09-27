@@ -9,17 +9,10 @@ app.post('/pdf', async (req, res) => {
     // }
     // pup()
     const browser = await puppeteer.launch({
-        args: [
-            "--disable-setuid-sandbox",
-            "--no-sandbox",
-            "--single-process",
-            "--no-zygote"
-        ],
-        executablePath: 
-        process.env.NODE_ENV === 'production' 
-            ? process.env.PUPPETTER.EXECUTABLE_PATH
-            : puppeteer.executablePath()
-    })
+        executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/google-chrome-stable',
+        headless: true, // Executa o navegador em modo headless
+        args: ['--no-sandbox', '--disable-setuid-sandbox'], // Argumentos recomendados para ambientes como Render
+    });
     const page = await browser.newPage()
     await page.setContent('<p>deu certo</p>')
     const pdf = await page.pdf({format: 'A4', path: 'catalogo.pdf'})
