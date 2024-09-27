@@ -14,7 +14,7 @@ app.post('/pdf', async (req, res) => {
             "--no-sandbox",
             "--single-process",
             "--no-zygote"
-        ]
+        ],
         executablePath: 
         process.env.NODE_ENV === 'production' 
             ? process.env.PUPPETTER.EXECUTABLE_PATH
