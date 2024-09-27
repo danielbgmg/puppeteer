@@ -20,7 +20,8 @@ app.post('/pdf', async (req, res) => {
         
         res.send(pdf)
     }catch (err){
-        res.json({msg: `Falha ao gerar o boleto, erro ${err}` })
+        console.error("Erro ao carregar os produtos:", error);
+        res.status(500).json({ message: "Erro interno do servidor." })
     }
 })
     // const pup = async () => {
