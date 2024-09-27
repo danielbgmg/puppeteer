@@ -12,8 +12,11 @@ app.post('/pdf', async (req, res) => {
         });
         const page = await browser.newPage()
         await page.setContent('<p>deu certo</p>')
+        console.log('abiu o pdf');
+        
         const pdf = await page.pdf({format: 'A4', path: 'catalogo.pdf'})
-    
+        console.log('gerou o pdf');
+        
         await page.close()
         await browser.close()
         
