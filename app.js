@@ -20,7 +20,7 @@ app.post('/pdf', async (req, res) => {
         
         res.send(pdf)
     }catch (err){
-        console.error("Erro ao carregar os produtos:", error);
+        console.error("Erro ao carregar os produtos:", err);
         res.status(500).json({ message: "Erro interno do servidor." })
     }
 })
