@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "npm install && npx puppeteer browsers install chrome && npm run start"
+    "build": "npm install && npx puppeteer browsers install chrome"
   },
   "keywords": [],
   "author": "",
