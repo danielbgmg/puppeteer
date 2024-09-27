@@ -1,9 +1,8 @@
 # Base de imagem
 FROM node:16
 
-# Instala dependências para o Puppeteer
+# Instalar dependências do Puppeteer
 RUN apt-get update && apt-get install -y \
-    chromium \
     ca-certificates \
     fonts-liberation \
     libappindicator3-1 \
@@ -23,16 +22,20 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Defina o caminho do executável do Chromium
-ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
-
-# Instala as dependências do projeto
+# Definir o diretório de trabalho
 WORKDIR /usr/src/app
+
+# Copiar arquivos de dependências do projeto
 COPY package*.json ./
+
+# Instalar as dependências do projeto
 RUN npm install
 
-# Copia o restante da aplicação
+# Copiar os arquivos da aplicação
 COPY . .
 
-# Inicia a aplicação
+# Expor a porta na qual o aplicativo será executado
+EXPOSE 3000
+
+# Iniciar a aplicação
 CMD ["npm", "start"]
